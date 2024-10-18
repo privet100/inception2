@@ -150,4 +150,4 @@ services:
       - wordpress:/var/www/
     networks:
       - inception
-    restart: no
+    restart: "no"

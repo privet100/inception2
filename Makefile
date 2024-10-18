@@ -1,4 +1,4 @@
-DOCKER_COMPOSE	=	docker compose
+DOCKER_COMPOSE	=	docker-compose
 DCOMPOSE_CONFG	=	srcs/docker-compose.yml
 DATA_DIR		=	$(HOME)/data
 RM				=	sudo rm -rf
@@ -39,7 +39,7 @@ fclean:
 
 .PHONY: create_dirs build up down start stop list clean fclean
 
-# sudo echo "127.0.0.1        gbreana.42.fr" >> /etc/hosts
-# sudo echo "127.0.0.1        db.gbreana.42.fr" >> /etc/hosts
-# sudo echo "127.0.0.1        baikal.gbreana.42.fr" >> /etc/hosts
-# sudo echo "127.0.0.1        chat.gbreana.42.fr" >> /etc/hosts
+# sudo echo "127.0.0.1        akostrik.42.fr" >> /etc/hosts
+# sudo echo "127.0.0.1        db.akostrik.42.fr" >> /etc/hosts
+# sudo echo "127.0.0.1        baikal.akostrik.42.fr" >> /etc/hosts
+# sudo echo "127.0.0.1        chat.akostrik.42.fr" >> /etc/hosts
