@@ -46,17 +46,6 @@ else
     wp option update home "https://${DOMAIN_NAME}"
     wp option update siteurl "https://${DOMAIN_NAME}"
 
-    # Set Redis params in wp-config
-    echo "Set Redis params in wp-config"
-    wp config set WP_REDIS_SCHEME "tcp"
-    wp config set WP_REDIS_HOST "redis"
-    wp config set WP_REDIS_PORT 6379
-    wp config set WP_REDIS_PASSWORD ${WP_REDIS_PASSWORD}
-
-    echo "Install and activate Redis plugin"
-    wp plugin install redis-cache --activate && \
-    wp redis enable
-
     # Deleting default posts
     wp post delete 1 --force
     wp post delete 2 --force
