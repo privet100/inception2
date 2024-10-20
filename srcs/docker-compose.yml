@@ -93,21 +93,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-  vsftpd:
-    container_name: vsftpd
-    build:
-      context: .
-      dockerfile: requirements/bonus/vsftpd/Dockerfile
-      args:
-        - FS_USER=${FS_USER}
-        - FS_USER_PASS=${FS_USER_PASS}
-    ports:
-      - "21:21"
-    volumes:
-      - wordpress:/var/www
-    networks: 
-      - inception
-    restart: always
   redis:
     container_name: redis
     build:
