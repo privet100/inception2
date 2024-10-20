@@ -18,4 +18,4 @@ RUN rm -rf /etc/nginx/http.d/default.conf && \
 
 EXPOSE 443
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD sleep 10 && nginx -g "daemon off;"

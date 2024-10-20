@@ -1,45 +1,33 @@
-DOCKER_COMPOSE	=	docker-compose
-DCOMPOSE_CONFG	=	srcs/docker-compose.yml
-DATA_DIR		=	$(HOME)/data
-RM				=	sudo rm -rf
-
-
 create_dirs:
-	@echo "\e[36mCreating the volumes (dirs) at $(DATA_DIR)\e[0m"
-	@mkdir -p $(DATA_DIR)/mariadb
-	@mkdir -p $(DATA_DIR)/wordpress
+	@echo "\e[36mCreating the volumes (dirs) at $(HOME)/data\e[0m"
+	@mkdir -p $(HOME)/data/mariadb
+	@mkdir -p $(HOME)/data/wordpress
 
 build: create_dirs
-	$(DOCKER_COMPOSE) -f $(DCOMPOSE_CONFG) build
+	docker-compose -f srcs/docker-compose.yml build
 
 up: create_dirs
-	$(DOCKER_COMPOSE) -f $(DCOMPOSE_CONFG) up -d
+	docker-compose -f srcs/docker-compose.yml up -d
 
 down:
-	$(DOCKER_COMPOSE) -f $(DCOMPOSE_CONFG) down
+	docker-compose -f srcs/docker-compose.yml down --remove-orphans
 
 start:
-	$(DOCKER_COMPOSE) -f $(DCOMPOSE_CONFG) start
+	docker-compose -f srcs/docker-compose.yml start
 
 stop:
-	$(DOCKER_COMPOSE) -f $(DCOMPOSE_CONFG) stop
+	docker-compose -f srcs/docker-compose.yml stop
 
-list:
-	docker ps
+re: down fclean build up
 
 clean: down
-		docker system prune -a
+	docker system prune -a
 
 fclean:
-		$(DOCKER_COMPOSE) -f $(DCOMPOSE_CONFG) down --rmi all --volumes --remove-orphans
-		docker system prune -f
-		docker volume prune -f
-		docker network prune -f
-		$(RM) $(DATA_DIR)
+	docker-compose -f srcs/docker-compose.yml down --rmi all --volumes --remove-orphans
+	docker system prune -f
+	docker volume prune -f
+	docker network prune -f
+	sudo rm -rf $(HOME)/data
 
-.PHONY: create_dirs build up down start stop list clean fclean
-
-# sudo echo "127.0.0.1        akostrik.42.fr" >> /etc/hosts
-# sudo echo "127.0.0.1        db.akostrik.42.fr" >> /etc/hosts
-# sudo echo "127.0.0.1        baikal.akostrik.42.fr" >> /etc/hosts
-# sudo echo "127.0.0.1        chat.akostrik.42.fr" >> /etc/hosts
+.PHONY: create_dirs build up down start stop re clean fclean
