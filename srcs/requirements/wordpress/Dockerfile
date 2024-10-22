@@ -5,14 +5,12 @@ ENV DOMAIN_NAME \
     DB_NAME \
     DB_USER \
     DB_PASSWORD \
-    WP_TITLE \
     WP_ADMIN \
     WP_ADM_PASS \
     WP_ADM_EMAIL \
     WP_USER \
     WP_USER_PASS \
-    WP_USER_EMAIL \
-    FS_USER
+    WP_USER_EMAIL
 
 WORKDIR /var/www/html
 

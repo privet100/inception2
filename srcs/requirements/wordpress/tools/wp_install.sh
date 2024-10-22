@@ -32,7 +32,7 @@ else
 
     echo "Installing WordPress..."
     wp core install --url=${DOMAIN_NAME} \
-                    --title=${WP_TITLE} \
+                    --title='My wp title' \
                     --admin_user=${WP_ADMIN} \
                     --admin_password=${WP_ADM_PASS} \
                     --admin_email=${WP_ADM_EMAIL}

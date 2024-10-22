@@ -46,14 +46,12 @@ services:
         DB_NAME: ${DB_NAME}
         DB_USER: ${DB_USER}
         DB_PASSWORD: ${DB_PASSWORD}
-        WP_TITLE: ${WP_TITLE}
         WP_ADMIN: ${WP_ADMIN}
         WP_ADM_PASS: ${WP_ADM_PASS}
         WP_ADM_EMAIL: ${WP_ADM_EMAIL}
         WP_USER: ${WP_USER}
         WP_USER_PASS: ${WP_USER_PASS}
         WP_USER_EMAIL: ${WP_USER_EMAIL}
-        FS_USER: ${FS_USER}
     ports:
       - "9000"
     depends_on:
