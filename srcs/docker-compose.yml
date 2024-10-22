@@ -104,7 +104,7 @@ services:
     restart: always
   simple:
     container_name: simple
-    build: 
+    build:
       context: .
       dockerfile: requirements/bonus/simple/Dockerfile
     ports:
