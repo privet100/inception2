@@ -34,7 +34,6 @@ RUN apk update && apk upgrade && apk add --no-cache \
     # sed -i "s|;php_flag[display_errors] = off|php_flag[display_errors] = on|g" /etc/php83/php-fpm.d/www.conf && \
     # sed -i "s|;php_admin_flag[log_errors] = on|php_admin_flag[log_errors] = on|g" /etc/php83/php-fpm.d/www.conf
 
-
 EXPOSE 9000
 
 COPY requirements/wordpress/tools/wp_install.sh /usr/local/bin/wp_install.sh
