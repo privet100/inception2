@@ -1,20 +1,21 @@
 version: '3.8'
 
 volumes:
-        wordpress:
-                name: wordpress
-                driver: local
-                driver_opts:
-                        device: ${HOME}/data/wordpress
-                        o: bind
-                        type: none
-        mariadb:
-                name: mariadb
-                driver: local
-                driver_opts:
-                        device: ${HOME}/data/mariadb
-                        o: bind
-                        type: none     
+  wp-volume:
+    name: wp-volume
+    driver: local
+    driver_opts:
+      device: ${HOME}/data/wordpress
+      o: bind
+      type: none
+  db-volume:
+    name: db-volume
+    driver: local
+    driver_opts:
+      device: ${HOME}/data/mariadb
+      o: bind
+      type: none     
+
 networks:
   inception:
     name: inception
@@ -31,7 +32,7 @@ services:
     depends_on:
       - wordpress
     volumes:
-      - wordpress:/var/www/
+      - wp-volume:/var/www/
     networks:
       - inception
     restart: always
@@ -41,23 +42,23 @@ services:
       context: .
       dockerfile: requirements/wordpress/Dockerfile
     environment:
-        DOMAIN_NAME: ${DOMAIN_NAME}
-        DB_HOST: ${DB_HOST}
-        DB_NAME: ${DB_NAME}
-        DB_USER: ${DB_USER}
-        DB_PASSWORD: ${DB_PASSWORD}
-        WP_ADMIN: ${WP_ADMIN}
-        WP_ADM_PASS: ${WP_ADM_PASS}
-        WP_ADM_EMAIL: ${WP_ADM_EMAIL}
-        WP_USER: ${WP_USER}
-        WP_USER_PASS: ${WP_USER_PASS}
-        WP_USER_EMAIL: ${WP_USER_EMAIL}
+      DOMAIN_NAME: ${DOMAIN_NAME}
+      DB_HOST: ${DB_HOST}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      WP_ADMIN: ${WP_ADMIN}
+      WP_ADM_PASS: ${WP_ADM_PASS}
+      WP_ADM_EMAIL: ${WP_ADM_EMAIL}
+      WP_USER: ${WP_USER}
+      WP_USER_PASS: ${WP_USER_PASS}
+      WP_USER_EMAIL: ${WP_USER_EMAIL}
     ports:
       - "9000"
     depends_on:
       - mariadb
     volumes:
-      - wordpress:/var/www/
+      - wp-volume:/var/www/
     env_file:
       - .env
     networks:
@@ -75,7 +76,7 @@ services:
     ports:
         - "3306:3306"
     volumes:
-      - mariadb:/var/lib/mysql
+      - db-volume:/var/lib/mysql
     env_file:
       - .env
     networks:
