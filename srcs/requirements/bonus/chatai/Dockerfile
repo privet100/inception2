@@ -20,16 +20,14 @@ RUN apt-get update && apt-get install -y \
 
 ENV PATH="/app/venv/bin:$PATH"
 
-
-COPY requirements/bonus/chatai/tools/app.py /app/app.py
-COPY requirements/bonus/chatai/tools/requirements.txt /app/requirements.txt
+COPY requirements/bonus/chatai/app.py /app/app.py
 
 RUN . /app/venv/bin/activate && \
     pip3 install --upgrade pip && \
     pip3 install numpy --pre torch torchvision torchaudio --force-reinstall --index-url https://download.pytorch.org/whl/nightly/cpu && \
     pip3 install accelerate && \
-    pip3 install --no-cache-dir -r /app/requirements.txt
+    pip3 install streamlit
 
 EXPOSE 8888
 
-CMD ["streamlit", "run", "app.py", "page_title='Stupid Chatbot'", "--server.port=8888", "--server.address=0.0.0.0"]
+CMD ["streamlit", "run", "app.py", "--server.port=8888", "--server.address=0.0.0.0"]
