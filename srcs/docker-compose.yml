@@ -30,7 +30,6 @@ services:
       - "443:443"
     depends_on:
       - wordpress
-      - simple
     volumes:
       - wordpress:/var/www/
     networks:
@@ -89,15 +88,3 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-  simple:
-    container_name: simple
-    build:
-      context: .
-      dockerfile: requirements/bonus/simple/Dockerfile
-    ports:
-      - "4242"
-    volumes:
-      - wordpress:/var/www/
-    networks:
-      - inception
-    restart: "no"
