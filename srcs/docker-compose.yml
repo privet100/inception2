@@ -30,7 +30,6 @@ services:
       - "443:443"
     depends_on:
       - wordpress
-      - chatai
       - simple
     volumes:
       - wordpress:/var/www/
@@ -90,18 +89,6 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
-  chatai:
-    container_name: chatai
-    build:
-      context: .
-      dockerfile: requirements/bonus/chatai/Dockerfile
-    environment:
-      - HF_TOKEN=${HF_TOKEN}
-    ports:
-      - "8888"
-    networks:
-      - inception
-    restart: always
   simple:
     container_name: simple
     build:
