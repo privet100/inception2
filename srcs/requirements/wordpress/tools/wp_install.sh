@@ -60,8 +60,8 @@ else
     fi
 
     echo "Filling an information about user ${WP_ADMIN}"
-    wp user meta update ${WP_ADMIN} first_name "Ivan"
-    wp user meta update ${WP_ADMIN} last_name "Bondar"
+    wp user meta update ${WP_ADMIN} first_name "Anna"
+    wp user meta update ${WP_ADMIN} last_name "K"
     wp user meta update ${WP_ADMIN} description "Je suis étudiant à l'École 42."
 
     echo "Creating additional user ${WP_USER}"
